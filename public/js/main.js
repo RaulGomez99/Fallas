@@ -15,8 +15,8 @@ function buscar() {
     }).then(respuesta => {
         //respuesta.features.filter(filtro).forEach(element => {
         respuesta.features.forEach(element => {
-          //  console.log(element);
-            document.querySelector("content").innerHTML+="<div class='falla'><img src="+element.properties.boceto+"><p>"+element.properties.nombre+"</p></div>";
+            document.querySelector("content").innerHTML+="<div class='falla'>"+
+            "<img src="+element.properties.boceto+"><p>"+element.properties.nombre+"</p></div>";
         });
     })
 }

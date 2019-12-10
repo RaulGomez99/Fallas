@@ -1,0 +1,23 @@
+body{
+    background: coral;
+}
+table, div, input {
+    margin: 0 auto;
+    text-align: center;
+}
+td, th{
+    border: 1.5px solid black;
+}
+tr:nth-child(3n-2){
+    background: red;
+}
+tr:nth-child(3n-1){
+    background: yellow;
+}
+tr:nth-child(3n){
+    background: green;
+}
+button{
+    background: rgb(180,52,52);
+    background: linear-gradient(90deg, rgba(180,52,52,1) 14%, rgba(120,121,9,1) 61%, rgba(5,255,0,1) 100%);
+}

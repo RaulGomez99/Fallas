@@ -1,0 +1,28 @@
+$background-color : coral;
+$colorSemaforo1:red;
+$colorSemaforo2:yellow;
+$colorSemaforo3:green;
+
+body{
+    background: $background-color;
+}
+table, div, input {
+    margin: 0 auto;
+    text-align: center;
+}
+td, th{
+    border: 1.5px solid black;
+}
+tr:nth-child(3n-2){
+    background: $colorSemaforo1;
+}
+tr:nth-child(3n-1){
+    background: $colorSemaforo2;
+}
+tr:nth-child(3n){
+    background: $colorSemaforo3;
+}
+button{
+    background: rgb(180,52,52);
+    background: linear-gradient(90deg, rgba(180,52,52,1) 14%, rgba(120,121,9,1) 61%, rgba(5,255,0,1) 100%);
+}

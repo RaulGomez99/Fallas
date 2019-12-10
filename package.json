@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "node-sass -watch scss -o \"public\/css\/\""
+    "scss": "node-sass -watch scss -o \"public/css/\""
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
   "homepage": "https://github.com/RaulGomez99/Daw-Diw#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "node-sass": "^4.13.0"
+    "node-sass": "^4.13.0",
+    "nodemon": "^2.0.1"
   }
 }

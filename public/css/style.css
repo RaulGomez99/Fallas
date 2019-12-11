@@ -34,13 +34,13 @@ img{
 }
 
 #mapa{
-    display: none;
+    opacity: 0;
     position: fixed;
     top: 25vh;
     left: 25vw;
     width: 50%;
     height: 50%;
-    z-index: 2;
+    z-index: -2;
 }
 
 #taparTodo{

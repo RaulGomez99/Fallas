@@ -1,5 +1,5 @@
 window.onload = init;
-var secciones, seccionesI, primera, traductor;
+var secciones, seccionesI, minimo, minimoI, maximo, maximoI, traductor;
 const url = "https://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
 var fallas;
 
@@ -8,9 +8,10 @@ function init() {
     crearMapa();
     traductor();
     document.querySelectorAll(".radio").forEach(radio => radio.addEventListener("change", cambiaCategoria));
-    document.getElementById("desde").addEventListener("blur", mostrar);
-    document.getElementById("hasta").addEventListener("blur", mostrar);
+    document.getElementById("desde").addEventListener("change", mostrar);
+    document.getElementById("hasta").addEventListener("change", mostrar);
     document.getElementById("seccion").addEventListener("change", mostrar);
+    document.getElementById("anyoBoceto").addEventListener("change",mostrar);
     document.getElementById("taparTodo").addEventListener("click",salirMapa);
     const fetchBusc = fetch(url);
     fetchBusc
@@ -25,20 +26,39 @@ function init() {
 }
 
 function primerMostrar() {
+    minimo=2019;
+    minimoI=2019;
+    maximo=0;
+    maximoI=0;
     secciones = [];
     seccionesI = [];
     secciones.push("Todas");
     seccionesI.push("Todas");
     const content = document.querySelector("content");
     fallas.features.forEach(element => {
-        if (!secciones.includes(element.properties.seccion))
+        if (!secciones.includes(element.properties.seccion)){
             secciones.push(element.properties.seccion);
+        }
         if (!seccionesI.includes(element.properties.seccion_i)) {
             seccionesI.push(element.properties.seccion_i);
         }
+        
+        if(element.properties.anyo_fundacion < minimo && element.properties.anyo_fundacion!=""){
+            minimo = element.properties.anyo_fundacion;
+        }
+        if(element.properties.anyo_fundacion > maximo && element.properties.anyo_fundacion!=""){
+            maximo = element.properties.anyo_fundacion;
+        }
+        if(element.properties.anyo_fundacion_i < minimoI && element.properties.anyo_fundacion!=""){
+            minimoI = element.properties.anyo_fundacion_i;
+        }
+        if(element.properties.anyo_fundacion_i > maximoI && element.properties.anyo_fundacion!=""){
+            maximoI = element.properties.anyo_fundacion_i;
+        }
     });
+
+    
     seccionesI.sort(function(a,b){
-      //return false;
       if(a=="Todas") return -1;
       if(b=="Todas") return 1;
       if(a=="E") return -1;
@@ -64,8 +84,20 @@ function primerMostrar() {
 function cambiaCategoria() {
     if (document.getElementById("principal").checked) {
         sections(secciones);
+        document.getElementById("desde").min=minimo;
+        document.getElementById("desde").max=maximo;
+        document.getElementById("hasta").min=minimo;
+        document.getElementById("hasta").max=maximo;
+        document.getElementById("desde").value=minimo;
+        document.getElementById("hasta").value=maximo;
     } else {
         sections(seccionesI);
+        document.getElementById("desde").min=minimoI;
+        document.getElementById("desde").max=maximoI;
+        document.getElementById("hasta").min=minimoI;
+        document.getElementById("hasta").max=maximoI;
+        document.getElementById("desde").value=minimoI;
+        document.getElementById("hasta").value=maximoI;
     }
     mostrar();
 }
@@ -78,7 +110,8 @@ function mostrar() {
             let div = document.createElement("div");
             div.classList.add("falla");
             let img = document.createElement("img");
-            img.src = element.properties.boceto;
+            let src = element.properties.boceto;
+            img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
@@ -94,7 +127,8 @@ function mostrar() {
             let div = document.createElement("div");
             div.classList.add("falla");
             let img = document.createElement("img");
-            img.src = element.properties.boceto_i;
+            let src = element.properties.boceto_i;
+            img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
@@ -119,10 +153,14 @@ function filtro(falla) {
             return false;
         if (parseInt(document.getElementById("hasta").value) < falla.properties.anyo_fundacion)
             return false;
+        if(document.getElementById("anyoBoceto").value < falla.properties.anyo_fundacion)
+            return false;
     } else {
         if (parseInt(document.getElementById("desde").value) > falla.properties.anyo_fundacion_i)
             return false;
         if (parseInt(document.getElementById("hasta").value) < falla.properties.anyo_fundacion_i)
+            return false;
+        if(document.getElementById("anyoBoceto").value < falla.properties.anyo_fundacion_i)
             return false;
     }
     if(document.getElementById("principal").checked){

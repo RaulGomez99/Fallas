@@ -1,6 +1,6 @@
 window.onload = init;
 var secciones, seccionesI, primera, traductor;
-const url = "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
+const url = "https://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
 var fallas;
 
 

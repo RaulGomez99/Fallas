@@ -1,5 +1,5 @@
 window.onload = init;
-var secciones, seccionesI, minimo, minimoI, maximo, maximoI, traductor;
+var secciones, seccionesI, minimo, minimoI, maximo, maximoI, traductor, sectores;
 const url = "https://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
 var fallas;
 
@@ -10,6 +10,7 @@ function init() {
     document.querySelectorAll(".radio").forEach(radio => radio.addEventListener("change", cambiaCategoria));
     document.getElementById("desde").addEventListener("change", mostrar);
     document.getElementById("hasta").addEventListener("change", mostrar);
+    document.getElementById("sector").addEventListener("change", mostrar);
     document.getElementById("seccion").addEventListener("change", mostrar);
     document.getElementById("anyoBoceto").addEventListener("change",mostrar);
     document.getElementById("taparTodo").addEventListener("click",salirMapa);
@@ -32,6 +33,7 @@ function primerMostrar() {
     maximoI=0;
     secciones = [];
     seccionesI = [];
+    sectores=[];
     secciones.push("Todas");
     seccionesI.push("Todas");
     const content = document.querySelector("content");
@@ -41,6 +43,10 @@ function primerMostrar() {
         }
         if (!seccionesI.includes(element.properties.seccion_i)) {
             seccionesI.push(element.properties.seccion_i);
+        }
+
+        if(!sectores.includes(element.properties.sector) && element.properties.sector!=""){
+            sectores.push(element.properties.sector);
         }
         
         if(element.properties.anyo_fundacion < minimo && element.properties.anyo_fundacion!=""){
@@ -77,6 +83,9 @@ function primerMostrar() {
       if(b=="FC") return -1;
       return a[0]-b[0];
     });
+    sectores.sort();
+    sectores.splice(0,0,"Todos");
+    sectors(sectores);
     cambiaCategoria();
     mostrar();
 }
@@ -170,6 +179,8 @@ function filtro(falla) {
       if (falla.properties.seccion_i != document.getElementById("seccion").value
        && document.getElementById("seccion").value != "Todas") return false;
     }
+    if(falla.properties.sector != document.getElementById("sector").value
+    && document.getElementById("sector").value != "Todos") return false;
     
         
     return true;
@@ -182,6 +193,17 @@ function sections(secciones) {
         let opcion = document.createElement("option");
         opcion.value = seccion;
         opcion.innerText = traductor[seccion];
+        select.appendChild(opcion);
+    });
+}
+
+function sectors(secciones) {
+    let select = document.getElementById("sector");
+    select.innerText = "";
+    secciones.forEach(seccion => {
+        let opcion = document.createElement("option");
+        opcion.value = seccion;
+        opcion.innerText = seccion;
         select.appendChild(opcion);
     });
 }

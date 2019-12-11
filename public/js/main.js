@@ -1,17 +1,17 @@
 window.onload = init;
 var secciones, seccionesI, primera, traductor;
-const url =
-    "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
+const url = "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
 var fallas;
 
+
 function init() {
+    crearMapa();
     traductor();
-    primera = true;
-    primeraI = true;
     document.querySelectorAll(".radio").forEach(radio => radio.addEventListener("change", cambiaCategoria));
     document.getElementById("desde").addEventListener("blur", mostrar);
     document.getElementById("hasta").addEventListener("blur", mostrar);
     document.getElementById("seccion").addEventListener("change", mostrar);
+    document.getElementById("taparTodo").addEventListener("click",salirMapa);
     const fetchBusc = fetch(url);
     fetchBusc
         .then(res => {
@@ -33,7 +33,7 @@ function primerMostrar() {
     fallas.features.forEach(element => {
         if (!secciones.includes(element.properties.seccion))
             secciones.push(element.properties.seccion);
-        if (!seccionesI.includes(element.properties.seccion_i) && primeraI) {
+        if (!seccionesI.includes(element.properties.seccion_i)) {
             seccionesI.push(element.properties.seccion_i);
         }
     });
@@ -82,6 +82,12 @@ function mostrar() {
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
+            let boton = document.createElement("button");
+            boton.coordenadas= element.geometry.coordinates;
+            boton.addEventListener("click", crearCoordenadas);
+            boton.innerText="Mostrar Ubicación";
+            boton.classList.add("botones");
+            div.appendChild(boton);
             div.appendChild(nombre);
             content.appendChild(div);
         } else {
@@ -92,6 +98,12 @@ function mostrar() {
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
+            let boton = document.createElement("button");
+            boton.coordenadas= element.geometry.coordinates;
+            boton.addEventListener("click", crearCoordenadas);
+            boton.innerText="Mostrar Ubicación";
+            boton.classList.add("botones");
+            div.appendChild(boton);
             div.appendChild(nombre);
             content.appendChild(div);
         }
@@ -134,55 +146,4 @@ function sections(secciones) {
         opcion.innerText = traductor[seccion];
         select.appendChild(opcion);
     });
-}
-
-function traductor() {
-    traductor = [];
-    traductor["1A"] = "Primera A";
-    traductor["1B"] = "Primera B";
-    traductor["2A"] = "Segunda A";
-    traductor["2B"] = "Segunda B";
-    traductor["3A"] = "Tercera A";
-    traductor["3B"] = "Tercera B";
-    traductor["3C"] = "Tercera C";
-    traductor["4A"] = "Cuarta A";
-    traductor["4B"] = "Cuarta B";
-    traductor["4C"] = "Cuarta C";
-    traductor["5A"] = "Quinta A";
-    traductor["5B"] = "Quinta B";
-    traductor["5C"] = "Quinta C";
-    traductor["6A"] = "Sexta A";
-    traductor["6B"] = "Sexta B";
-    traductor["6C"] = "Sexta C";
-    traductor["7A"] = "Septima A";
-    traductor["7B"] = "Septima B";
-    traductor["7C"] = "Septima C";
-    traductor["8A"] = "Octava A";
-    traductor["8B"] = "Octava B";
-    traductor["8C"] = "Octava C";
-    traductor["E"] = "Especial";
-    traductor["FC"] = "Fuera de Concurso";
-    traductor["Todas"] = "Todas";
-    traductor["1"] = "1 Primera";
-    traductor["2"] = "2 Segunda";
-    traductor["3"] = "3 Tercera";
-    traductor["4"] = "4 Cuarta";
-    traductor["5"] = "5 Quinta";
-    traductor["6"] = "6 Sexta";
-    traductor["7"] = "7 Séptima";
-    traductor["8"] = "8 Octava";
-    traductor["9"] = "9 Novena";
-    traductor["10"] = "10 Décima";
-    traductor["11"] = "11 Onceava";
-    traductor["12"] = "12 Doceava";
-    traductor["13"] = "13 Treceava";
-    traductor["14"] = "14 Catorceava";
-    traductor["15"] = "15 Quinceava";
-    traductor["16"] = "16 Décimo Sexta";
-    traductor["17"] = "17 Décimo Séptima";
-    traductor["18"] = "18 Décimo Octava";
-    traductor["19"] = "19 Décimo Novena";
-    traductor["20"] = "20 Vigésima";
-    traductor["21"] = "21 Vigésima Primera";
-    traductor["22"] = "22 Vigésima Segunda";
 }

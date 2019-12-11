@@ -16,8 +16,10 @@
   "homepage": "https://github.com/RaulGomez99/Daw-Diw#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "leaflet": "^1.6.0",
     "mongoose": "^5.8.0",
     "node-sass": "^4.13.0",
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.1",
+    "proj4": "^2.6.0"
   }
 }

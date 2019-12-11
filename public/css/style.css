@@ -32,3 +32,22 @@ img{
 .falla{
     border: 1px solid blue;
 }
+
+#mapa{
+    display: none;
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    width: 50%;
+    height: 50%;
+    z-index: 2;
+}
+
+#taparTodo{
+    position: fixed;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 1;
+}

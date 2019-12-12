@@ -12,6 +12,7 @@ function init() {
     document.getElementById("hasta").addEventListener("change", mostrar);
     document.getElementById("sector").addEventListener("change", mostrar);
     document.getElementById("seccion").addEventListener("change", mostrar);
+    document.getElementById("nombre").addEventListener("change", mostrar);
     document.getElementById("anyoBoceto").addEventListener("change",mostrar);
     document.getElementById("taparTodo").addEventListener("click",salirMapa);
     const fetchBusc = fetch(url);
@@ -171,6 +172,7 @@ function filtro(falla) {
     // return true;
     if (isNaN(document.getElementById("desde").value)) return true;
     if (isNaN(document.getElementById("hasta").value)) return true;
+    if(falla.properties.nombre.toUpperCase().indexOf(document.getElementById("nombre").value.toUpperCase())==-1 && document.getElementById("nombre").value!="") return false;
     if (document.getElementById("principal").checked) {
         if (parseInt(document.getElementById("desde").value) > parseInt(falla.properties.anyo_fundacion))
             return false;

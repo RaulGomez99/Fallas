@@ -15,6 +15,7 @@
   "license": "ISC",
   "homepage": "https://github.com/RaulGomez99/Daw-Diw#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "leaflet": "^1.6.0",
     "mongoose": "^5.8.0",

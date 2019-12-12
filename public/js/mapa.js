@@ -4,7 +4,8 @@ function crearMapa() {
     mapa = L.map('mapa').setView([0, 0], 1);
     marker = L.marker([0, 0]).addTo(mapa);
 
-    L.tileLayer('https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=NVlvBbTlvbFWP7KKrFmF', {
+   // L.tileLayer('https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=NVlvBbTlvbFWP7KKrFmF', {
+    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=NVlvBbTlvbFWP7KKrFmF', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     }).addTo(mapa);
 

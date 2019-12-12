@@ -139,9 +139,24 @@ function mostrar() {
             boton.addEventListener("click", crearCoordenadas);
             boton.innerText="Mostrar Ubicación";
             boton.classList.add("botones");
+            let estrellas = document.createElement("div");
+            estrellas.classList.add("stars-outer");
+            let estrellasDentro = document.createElement("div");
+            estrellasDentro.classList.add("stars-inner");
+            estrellas.appendChild(estrellasDentro);
+            estrellas.addEventListener("click", estrellitasPorEncima);
+        //     let boton2 = document.createElement("button");
+        //     boton2.idFalla = element.properties.id;
+        //    // boton2.addEventListener("click", enviarCalificacion);
+        //     boton2.innerText="Enviar Calificación";
+        //     boton2.classList.add("botones");
+            
             div.appendChild(boton);
             div.appendChild(artista);
             div.appendChild(nombre);
+            //div.appendChild(boton2);
+            div.appendChild(document.createElement("br"));
+            div.appendChild(estrellas);
             content.appendChild(div);
         } else {
             let div = document.createElement("div");

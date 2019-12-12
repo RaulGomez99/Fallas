@@ -9,6 +9,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(bodyParser.json());
+
 
 // Nos conectaremos a la base de datos
 const dbConfig = require('./config/database.config');

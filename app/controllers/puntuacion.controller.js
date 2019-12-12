@@ -2,7 +2,7 @@ const Puntuacion = require('../models/puntuacion.model.js');
 
 // Crear y salvar
 exports.create = (req,res)=>{
-    console.log("Dentro");
+    console.log(req);
     // Validamos el Puntuacion
     if (!req.body){
         console.log(req.body);
@@ -17,7 +17,7 @@ exports.create = (req,res)=>{
         puntuacion: req.body.puntuacion|| -1
        
     })
-    console.log(puntuacion)
+    //console.log(req)
     puntuacion.save().then(data =>{
         res.send(data);
     }).catch(err => {

@@ -130,12 +130,16 @@ function mostrar() {
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
+            let artista = document.createElement("p");
+            if(element.properties.artista!="")artista.innerText = element.properties.artista;
+            else artista.innerText = "Anonimo";
             let boton = document.createElement("button");
             boton.coordenadas= element.geometry.coordinates;
             boton.addEventListener("click", crearCoordenadas);
             boton.innerText="Mostrar Ubicación";
             boton.classList.add("botones");
             div.appendChild(boton);
+            div.appendChild(artista);
             div.appendChild(nombre);
             content.appendChild(div);
         } else {
@@ -147,12 +151,16 @@ function mostrar() {
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
+            let artista = document.createElement("p");
+            if(element.properties.artista_i!="")artista.innerText = element.properties.artista_i;
+            else artista.innerText = "Anonimo";
             let boton = document.createElement("button");
             boton.coordenadas= element.geometry.coordinates;
             boton.addEventListener("click", crearCoordenadas);
             boton.innerText="Mostrar Ubicación";
             boton.classList.add("botones");
             div.appendChild(boton);
+            div.appendChild(artista);
             div.appendChild(nombre);
             content.appendChild(div);
         }

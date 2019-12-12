@@ -81,7 +81,13 @@ function primerMostrar() {
       if(b=="E") return 1;
       if(a=="FC") return 1;
       if(b=="FC") return -1;
-      return a[0]-b[0];
+      if(a[0]-b[0]!=0)return a[0]-b[0];
+      if(a[1]=="A") return -1;
+      if(b[1]=="A") return 1;
+      if(a[1]=="B") return -1;
+      if(b[1]=="B") return 1;
+      if(a[1]=="C") return 1;
+      if(b[1]=="C") return -1;
     });
     sectores.sort();
     sectores.splice(0,0,"Todos");

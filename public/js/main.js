@@ -139,6 +139,8 @@ function mostrar() {
             let img = document.createElement("img");
             let src = element.properties.boceto;
             img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
+            console.log(img.height);
+            if(img.height==600) div.classList.add("imgAlta");
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
@@ -173,6 +175,8 @@ function mostrar() {
             let img = document.createElement("img");
             let src = element.properties.boceto_i;
             img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
+            if(img.height>=550) div.classList.add("imgAlta");
+            if(img.height>=450 && img.height<550) div.classList.add("imgMedia");
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;

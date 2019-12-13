@@ -184,9 +184,22 @@ function mostrar() {
             boton.addEventListener("click", crearCoordenadas);
             boton.innerText="Mostrar Ubicación";
             boton.classList.add("botones");
+
+            let estrellas = document.createElement("div");
+            estrellas.classList.add("stars-outer");
+            estrellas.idFalla=element.properties.id;
+            estrellas.idPuntuacion=element.idPuntuacion;
+            let estrellasDentro = document.createElement("div");
+            estrellasDentro.classList.add("stars-inner");
+            if(element.puntuacion!=-1){estrellasDentro.style.width=element.puntuacion*20+"%";};
+            estrellas.appendChild(estrellasDentro);
+            estrellas.addEventListener("click", estrellitasPorEncima);
+
             div.appendChild(boton);
             div.appendChild(artista);
             div.appendChild(nombre);
+            div.appendChild(document.createElement("br"));
+            div.appendChild(estrellas);
             content.appendChild(div);
         }
     });

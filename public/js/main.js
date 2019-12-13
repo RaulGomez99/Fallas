@@ -5,7 +5,7 @@ var fallas,ip;
 
 
 function init() {
-    fetch("/ip").then(res=> {return res.json()}).then(resp=>{ip=resp.ip});
+    fetch("https://api.ipify.org/?format=json").then(res=> {return res.json()}).then(resp=>{ip=resp.ip});
     crearMapa();
     traductor();
     document.querySelectorAll(".radio").forEach(radio => radio.addEventListener("change", cambiaCategoria));

@@ -7,11 +7,12 @@ function estrellitasPorEncima(ev){
     datos.idFalla=this.idFalla;
     datos.puntuacion=puntuacion/2;
     datos.idPuntuacion=this.idPuntuacion;
-    if(!valorado)valolar(datos);
+    datos.ip=ip;
+    if(!valorado)valolar(datos,this);
     else editatValoracion(datos,this);
 }
 
-function valolar(datos){
+function valolar(datos, estrellas){
     console.log(datos);
     const fetchBusc = fetch("/puntuaciones",{
         method: 'POST', 
@@ -27,6 +28,10 @@ function valolar(datos){
         })
         .then(respuesta => {
             console.log(respuesta);
+            estrellas.idPuntuacion=respuesta._id;
+            console.log(estrellas);
+            datos.idPuntuacion=respuesta._id;
+            actualizarFalla(datos);
         });
 }
 
@@ -40,11 +45,19 @@ function editatValoracion(datos, estrellas){
     });
     fetchBusc
         .then(res => {
-            console.log(res);
             return res.json();
         })
         .then(respuesta => {
             console.log(respuesta);
+            estrellas.idPuntuacion=respuesta._id;
+            console.log(estrellas);
+            datos.idPuntuacion=respuesta._id;
+            actualizarFalla(datos);
         });
 }
 
+function actualizarFalla(datos){
+    let falla = fallas.features.filter(falla=> {return datos.idFalla==falla.properties.id})[0]
+    falla.idPuntuacion=datos.idPuntuacion;
+    falla.puntuacion=datos.puntuacion;
+}

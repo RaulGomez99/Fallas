@@ -13,7 +13,7 @@ exports.create = (req,res)=>{
 
     const puntuacion = new Puntuacion({
         idFalla: req.body.idFalla || "idFalla",
-        ip: req.connection.remoteAddress || "127.0.0.1",
+        ip: req.body.ip || "127.0.0.1",
         puntuacion: req.body.puntuacion|| -1
        
     })
@@ -106,7 +106,7 @@ exports.update = (req, res) => {
     // Find note and update it with the request body
     Puntuacion.findByIdAndUpdate(req.params.puntuacionId, {
         idFalla: req.body.idFalla || "idFalla",
-        ip: req.connection.remoteAddress || "127.0.0.1",
+        ip: req.body.ip || "127.0.0.1",
         puntuacion: req.body.puntuacion|| -1
     }, {new: true})
     .then(puntuacion => {

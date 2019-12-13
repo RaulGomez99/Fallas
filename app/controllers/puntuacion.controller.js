@@ -65,6 +65,32 @@ exports.findOne = (req,res) => {
         });
     };
 
+    exports.ip = (req, res)=>{
+        const ip = req.connection.remoteAddress;
+        console.log("Se ha conectado cliente con IP "+ip);
+        res.send({"ip":ip});
+    }
+
+    exports.findIpFalla = (req,res) => {
+        Puntuacion.findOne({"idFalla":req.params.fallaId,"ip":req.params.ipId})
+        .then(puntuacion=>{
+            if (!puntuacion){
+                res.send({"puntuacion":-1});
+            }
+                //Puntuacion.findById(puntuacion.id).then(punt=>res.send(punt));
+            else res.send(puntuacion);
+            }).catch(err=>{
+                if(err.kind === 'ObjectId'){
+                    return res.status(404).send({
+                        message: "Puntuacion no encontrado con ese id :" +req.params.ipId
+                    });
+                }
+                 return res.status(500).send({
+                    message: "Tenemos NOSOTROS problemas con ese id :" +req.params.ipId
+                 });
+            });
+        };
+
 
 
 
@@ -79,10 +105,9 @@ exports.update = (req, res) => {
 
     // Find note and update it with the request body
     Puntuacion.findByIdAndUpdate(req.params.puntuacionId, {
-        nombre: req.body.nombre|| "Sin nombre",
-        profesion: req.body.profesion || "Sin profesion",
-        puntosVida: req.body.puntosVida || 0,
-        puntosCordura: req.body.puntosCordura || 0
+        idFalla: req.body.idFalla || "idFalla",
+        ip: req.connection.remoteAddress || "127.0.0.1",
+        puntuacion: req.body.puntuacion|| -1
     }, {new: true})
     .then(puntuacion => {
         if(!puntuacion) {

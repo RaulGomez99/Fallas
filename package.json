@@ -20,7 +20,9 @@
     "leaflet": "^1.6.0",
     "mongoose": "^5.8.0",
     "node-sass": "^4.13.0",
-    "nodemon": "^2.0.2",
     "proj4": "^2.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

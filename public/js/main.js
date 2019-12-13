@@ -1,10 +1,11 @@
 window.onload = init;
 var secciones, seccionesI, minimo, minimoI, maximo, maximoI, traductor, sectores;
 const url = "https://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
-var fallas;
+var fallas,ip;
 
 
 function init() {
+    fetch("/ip").then(res=> {return res.json()}).then(resp=>{ip=resp.ip});
     crearMapa();
     traductor();
     document.querySelectorAll(".radio").forEach(radio => radio.addEventListener("change", cambiaCategoria));
@@ -27,7 +28,7 @@ function init() {
         });
 }
 
-function primerMostrar() {
+async function primerMostrar() {
     minimo=2019;
     minimoI=2019;
     maximo=0;
@@ -39,6 +40,12 @@ function primerMostrar() {
     seccionesI.push("Todas");
     const content = document.querySelector("content");
     fallas.features.forEach(element => {
+        fetch("/puntuaciones/"+element.properties.id+"/"+ip).then(res=> {return res.json()}).then(
+            resp=>{
+              //  element.puntuacion={};
+                element.puntuacion=resp.puntuacion;
+                element.idPuntuacion=resp._id;
+            });
         if (!secciones.includes(element.properties.seccion)){
             secciones.push(element.properties.seccion);
         }
@@ -93,8 +100,12 @@ function primerMostrar() {
     sectores.sort();
     sectores.splice(0,0,"Todos");
     sectors(sectores);
+    await sleep(2000);
     cambiaCategoria();
-    mostrar();
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function cambiaCategoria() {
@@ -141,20 +152,18 @@ function mostrar() {
             boton.classList.add("botones");
             let estrellas = document.createElement("div");
             estrellas.classList.add("stars-outer");
+            estrellas.idFalla=element.properties.id;
+            estrellas.idPuntuacion=element.idPuntuacion;
             let estrellasDentro = document.createElement("div");
             estrellasDentro.classList.add("stars-inner");
+            if(element.puntuacion!=-1){estrellasDentro.style.width=element.puntuacion*20+"%";};
             estrellas.appendChild(estrellasDentro);
             estrellas.addEventListener("click", estrellitasPorEncima);
-        //     let boton2 = document.createElement("button");
-        //     boton2.idFalla = element.properties.id;
-        //    // boton2.addEventListener("click", enviarCalificacion);
-        //     boton2.innerText="Enviar Calificación";
-        //     boton2.classList.add("botones");
             
+
             div.appendChild(boton);
             div.appendChild(artista);
             div.appendChild(nombre);
-            //div.appendChild(boton2);
             div.appendChild(document.createElement("br"));
             div.appendChild(estrellas);
             content.appendChild(div);

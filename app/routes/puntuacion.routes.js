@@ -10,6 +10,10 @@ module.exports = (app) => {
     // Retrieve a single puntuaciones with puntuacionId
     app.get('/puntuaciones/:puntuacionId', puntuaciones.findOne);
 
+    app.get('/puntuaciones/:fallaId/:ipId', puntuaciones.findIpFalla);
+
+    app.get('/ip', puntuaciones.ip);
+
     // Update a puntuaciones with puntuacionId
     app.put('/puntuaciones/:puntuacionId', puntuaciones.update);
 

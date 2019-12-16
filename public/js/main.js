@@ -139,8 +139,6 @@ function mostrar() {
             let img = document.createElement("img");
             let src = element.properties.boceto;
             img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
-            console.log(img.height);
-            if(img.height==600) div.classList.add("imgAlta");
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
@@ -161,8 +159,7 @@ function mostrar() {
             if(element.puntuacion!=-1){estrellasDentro.style.width=element.puntuacion*20+"%";};
             estrellas.appendChild(estrellasDentro);
             estrellas.addEventListener("click", estrellitasPorEncima);
-            
-
+            div.style.gridRowEnd=(Math.round(img.height*0.8/100))+" span";
             div.appendChild(boton);
             div.appendChild(artista);
             div.appendChild(nombre);

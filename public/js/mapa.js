@@ -12,7 +12,7 @@ function crearMapa() {
 
 }
 
-function coordenadas(coordenadas) {
+function coordenadas(coordenadas, urlImagen) {
     let primero = "+proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs";
     let segundo = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs";
 
@@ -24,10 +24,12 @@ function coordenadas(coordenadas) {
         mapa.removeLayer(marker);
     }
     marker = L.marker(coordenadas).addTo(mapa);
+    marker.bindPopup("<img src="+urlImagen+">").openPopup();
+   
 }
 
 function crearCoordenadas() {
-    coordenadas(this.coordenadas);
+    coordenadas(this.coordenadas,this.parentNode.children[0].src);
     document.getElementById("taparTodo").style.display = "block";
     //   document.getElementById("mapa").style.display="block";
     document.getElementById("mapa").style.opacity = 1;

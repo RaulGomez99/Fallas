@@ -8,6 +8,7 @@ function init() {
     fetch("https://api.ipify.org/?format=json").then(res=> {return res.json()}).then(resp=>{ip=resp.ip});
     crearMapa();
     traductor();
+    window.addEventListener("resize", function () { waterfall(document.querySelector("content")); }); 
     document.querySelectorAll(".radio").forEach(radio => radio.addEventListener("change", cambiaCategoria));
     document.getElementById("desde").addEventListener("change", mostrar);
     document.getElementById("hasta").addEventListener("change", mostrar);
@@ -28,7 +29,7 @@ function init() {
         });
 }
 
-async function primerMostrar() {
+function primerMostrar() {
     minimo=2019;
     minimoI=2019;
     maximo=0;
@@ -40,12 +41,13 @@ async function primerMostrar() {
     seccionesI.push("Todas");
     const content = document.querySelector("content");
     fallas.features.forEach(element => {
+        // console.log(element.properties.id+" "+ip)
         fetch("/puntuaciones/"+element.properties.id+"/"+ip).then(res=> {return res.json()}).then(
             resp=>{
-              //  element.puntuacion={};
+                // console.log(resp);
                 element.puntuacion=resp.puntuacion;
                 element.idPuntuacion=resp._id;
-            });
+        });
         if (!secciones.includes(element.properties.seccion)){
             secciones.push(element.properties.seccion);
         }
@@ -100,12 +102,7 @@ async function primerMostrar() {
     sectores.sort();
     sectores.splice(0,0,"Todos");
     sectors(sectores);
-    await sleep(2000);
     cambiaCategoria();
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function cambiaCategoria() {
@@ -138,6 +135,7 @@ function mostrar() {
             div.classList.add("falla");
             let img = document.createElement("img");
             let src = element.properties.boceto;
+            //Cambia el año del boceto
             img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
             div.appendChild(img);
             let nombre = document.createElement("p");
@@ -171,6 +169,7 @@ function mostrar() {
             div.classList.add("falla");
             let img = document.createElement("img");
             let src = element.properties.boceto_i;
+            //Cambia el año del boceto
             img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
             if(img.height>=550) div.classList.add("imgAlta");
             if(img.height>=450 && img.height<550) div.classList.add("imgMedia");
@@ -203,14 +202,20 @@ function mostrar() {
             div.appendChild(estrellas);
             content.appendChild(div);
         }
+        
     });
+    var actualizarGrid = setInterval(()=>waterfall(content), 100);
+    setTimeout(()=>window.clearInterval(actualizarGrid),15000);
 }
 
 function filtro(falla) {
     // return true;
-    if (isNaN(document.getElementById("desde").value)) return true;
-    if (isNaN(document.getElementById("hasta").value)) return true;
-    if(falla.properties.nombre.toUpperCase().indexOf(document.getElementById("nombre").value.toUpperCase())==-1 && document.getElementById("nombre").value!="") return false;
+  /*  if (isNaN(document.getElementById("desde").value)) return true;
+    if (isNaN(document.getElementById("hasta").value)) return true;*/
+    if(falla.properties.nombre.toUpperCase().
+        indexOf(document.getElementById("nombre").value.toUpperCase())==-1 && 
+        document.getElementById("nombre").value!="") 
+            return false;
     if (document.getElementById("principal").checked) {
         if (parseInt(document.getElementById("desde").value) > parseInt(falla.properties.anyo_fundacion))
             return false;

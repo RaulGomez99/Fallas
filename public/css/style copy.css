@@ -1,0 +1,119 @@
+body{
+    background: white;
+}
+div, input {
+    margin: 0 auto;
+    text-align: center;
+}
+
+button{
+    background: blue;
+    color: white;
+}
+
+content{
+    width: 100%;
+    display: inline-block;
+}
+
+
+img{
+    width: 80%;
+}
+
+.falla{
+    width: 13.7%;
+    margin: 1%;
+    border: 1px solid blue;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2%; 
+    /* display: flex;
+    flex-direction: column; */
+}
+@media (max-width: 700px) {
+    .falla{
+        width: 94%;
+        margin: 1%;
+        border: 1px solid blue;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 2%; 
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1000px) {
+    .falla{
+        width: 43%;
+        margin: 1%;
+        border: 1px solid blue;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 2%; 
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+    .falla{
+        width: 27%;
+        margin: 1%;
+        border: 1px solid blue;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 2%; 
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1500px) {
+    .falla{
+        width: 18.7%;
+        margin: 1%;
+        border: 1px solid blue;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 2%; 
+    }
+}
+
+#mapa{
+    opacity: 0;
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    width: 50%;
+    height: 50%;
+    z-index: -2;
+}
+
+#taparTodo{
+    position: fixed;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 1;
+}
+
+.stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+  }
+   
+  .stars-outer::before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+  }
+   
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+  }
+   
+  .stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #f8ce0b;
+  }

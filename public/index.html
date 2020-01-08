@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <link rel="icon" type="image/jpg" href="icono.png" />
+    <link rel="icon" type="image/jpg" href="logos/icono.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -24,31 +24,34 @@
 </head>
 
 <body>
+    
     <div id="taparTodo"></div>
     <div id="formulario">
-        Nombre<br>
-        <input type="text" name="nombre" id="nombre"><br>
-        Sección<br>
-        <select name="seccion" id="seccion">
-            
-        </select><br>
-        Sector<br>
-        <select name="sector" id="sector">
-            
-        </select><br>
-        Año Boceto<br>
-        <select name="anyoBoceto" id="anyoBoceto">
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-        </select><br>
-        Año de fundación<br>
-        <input id="desde" class="texto" type="number" name="desde" placeholder="Desde"><br>
-        <input id="hasta" class="texto" type="number" name="hasta" placeholder="Hasta"><br>
-        <input id="principal" class="radio" type="radio" name="categoria" value="principal" checked="checked"> Principal <br>
-        <input id="infantil" class="radio" type="radio" name="categoria" value="infantil"> Infantil <br>
-        
+        <div id="icono"></div>
+        <div id="nav">
+            Nombre
+            <input type="text" name="nombre" id="nombre">
+            Sección
+            <select name="seccion" id="seccion">
+                
+            </select>
+            Sector
+            <select name="sector" id="sector">
+                
+            </select>
+            Año Boceto
+            <select name="anyoBoceto" id="anyoBoceto">
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+            </select>
+            Año de fundación
+            <input id="desde" class="texto" type="number" name="desde" placeholder="Desde">
+            <input id="hasta" class="texto" type="number" name="hasta" placeholder="Hasta">
+            <input id="principal" class="radio" type="radio" name="categoria" value="principal" checked="checked"> Principal 
+            <input id="infantil" class="radio" type="radio" name="categoria" value="infantil"> Infantil <br>
+        </div>
     </div>
     <br>
     <main>

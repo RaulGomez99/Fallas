@@ -1,28 +1,164 @@
-$background-color : coral;
-$colorSemaforo1:red;
-$colorSemaforo2:yellow;
-$colorSemaforo3:green;
+$empresa: "EvilCorp";
+$color:"";
+$colorSecundario:"";
+$colorSuavizaco:"";
+$colorContrario:"";
+$icono:"";
+$colorNav:"";
+@if $empresa=="EvilCorp" {
+    // $color:#a9213b;
+    $color:#c60000;
+    $colorSecundario:#f6f6f6;
+    $colorSuavizaco:#df6f84;
+    $colorContrario:black;
+    $icono:"../logos/evilcorp.png";
+    $colorNav:#8e1329;
+}@else{
+    $color:#5b954a;
+    $colorSecundario:black;
+    $colorSuavizaco:#79cd60;
+    $colorContrario:#f6f6f6;
+    $icono:"../logos/cthulhu.png";
+    $colorNav:#2a683d;
+}
 
 body{
-    background: $background-color;
+    background: $color;
 }
-table, div, input {
-    margin: 0 auto;
-    text-align: center;
-}
-td, th{
-    border: 1.5px solid black;
-}
-tr:nth-child(3n-2){
-    background: $colorSemaforo1;
-}
-tr:nth-child(3n-1){
-    background: $colorSemaforo2;
-}
-tr:nth-child(3n){
-    background: $colorSemaforo3;
-}
+// div, input {
+//     margin: 0 auto;
+// }
+
+
+
 button{
-    background: rgb(180,52,52);
-    background: linear-gradient(90deg, rgba(180,52,52,1) 14%, rgba(120,121,9,1) 61%, rgba(5,255,0,1) 100%);
+    background: $colorSuavizaco;
+    color: black;
+    margin-top:15px;
+    border:1px solid $color;
+    border-radius: 10px;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:9px 23px;
+    text-decoration:none;
+    box-shadow: 5px 5px darkslategrey;
+    // @if $empresa=="EvilCorp" {
+    //     text-shadow: -1px 0 $colorContrario, 0 1px $colorContrario, 
+    //             1px 0 $colorContrario, 0 -1px $colorContrario;
+    // }
+    
 }
+
+#icono{
+    content: url($icono);
+    width: 5%;
+    display: inline-block;
+}
+
+input, select, option{
+    background: $colorSuavizaco;
+
+}
+
+content{
+    width: 100%;
+    display: inline-block;
+    margin-top: Calc(5% + 2px);
+}
+
+#formulario{
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    overflow: hidden;
+    background: $colorNav;
+    z-index: 7;
+    @media (max-width: 700px) {
+        background: $color;
+    }
+    display: block;
+    width: 100%;
+}
+
+
+img{
+    width: 90%;
+    border-radius: 5px;
+}
+
+@media (max-width: 700px) {
+    #nav{
+        display: none;
+    }
+} 
+
+.falla{
+    width: 13.7%;
+    margin: 1%;
+    border: 1px solid $colorSecundario;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family:Arial;
+	font-size:18px;
+    padding: 2%; 
+    color: black; 
+    @media (max-width: 700px) {
+        width: 94%;
+    } 
+    @media (min-width: 700px) and (max-width: 1000px) {
+        width: 43%;
+    }
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        width: 27%;
+    }
+    @media (min-width: 1300px) and (max-width: 1500px) {
+        width: 18.7%;
+    }
+
+}
+
+#mapa{
+    opacity: 0;
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    width: 50%;
+    height: 50%;
+    z-index: -2;
+}
+
+#taparTodo{
+    position: fixed;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 1;
+}
+
+.stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+  }
+   
+  .stars-outer::before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+  }
+   
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+  }
+   
+  .stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #f8ce0b;
+  }

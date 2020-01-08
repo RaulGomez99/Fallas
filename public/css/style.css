@@ -1,119 +1,112 @@
-body{
-    background: white;
-}
-div, input {
-    margin: 0 auto;
-    text-align: center;
-}
+body {
+  background: #c60000; }
 
-button{
-    background: blue;
-    color: white;
-}
+button {
+  background: #df6f84;
+  color: black;
+  margin-top: 15px;
+  border: 1px solid #c60000;
+  border-radius: 10px;
+  display: inline-block;
+  cursor: pointer;
+  font-family: Arial;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 9px 23px;
+  text-decoration: none;
+  box-shadow: 5px 5px darkslategrey; }
 
-content{
-    width: 100%;
-    display: inline-block;
-}
+#icono {
+  content: url("../logos/evilcorp.png");
+  width: 5%;
+  display: inline-block; }
 
+input, select, option {
+  background: #df6f84; }
 
-img{
-    width: 80%;
-}
+content {
+  width: 100%;
+  display: inline-block;
+  margin-top: Calc(5% + 2px); }
 
-.falla{
-    width: 13.7%;
-    margin: 1%;
-    border: 1px solid blue;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 2%; 
-    /* display: flex;
-    flex-direction: column; */
-}
+#formulario {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  overflow: hidden;
+  background: #8e1329;
+  z-index: 7;
+  display: block;
+  width: 100%; }
+  @media (max-width: 700px) {
+    #formulario {
+      background: #c60000; } }
+
+img {
+  width: 90%;
+  border-radius: 5px; }
+
 @media (max-width: 700px) {
-    .falla{
-        width: 94%;
-        margin: 1%;
-        border: 1px solid blue;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding: 2%; 
-    }
-}
+  #nav {
+    display: none; } }
+.falla {
+  width: 13.7%;
+  margin: 1%;
+  border: 1px solid #f6f6f6;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: Arial;
+  font-size: 18px;
+  padding: 2%;
+  color: black; }
+  @media (max-width: 700px) {
+    .falla {
+      width: 94%; } }
+  @media (min-width: 700px) and (max-width: 1000px) {
+    .falla {
+      width: 43%; } }
+  @media (min-width: 1000px) and (max-width: 1300px) {
+    .falla {
+      width: 27%; } }
+  @media (min-width: 1300px) and (max-width: 1500px) {
+    .falla {
+      width: 18.7%; } }
 
-@media (min-width: 700px) and (max-width: 1000px) {
-    .falla{
-        width: 43%;
-        margin: 1%;
-        border: 1px solid blue;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding: 2%; 
-    }
-}
+#mapa {
+  opacity: 0;
+  position: fixed;
+  top: 25vh;
+  left: 25vw;
+  width: 50%;
+  height: 50%;
+  z-index: -2; }
 
-@media (min-width: 1000px) and (max-width: 1300px) {
-    .falla{
-        width: 27%;
-        margin: 1%;
-        border: 1px solid blue;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding: 2%; 
-    }
-}
-
-@media (min-width: 1300px) and (max-width: 1500px) {
-    .falla{
-        width: 18.7%;
-        margin: 1%;
-        border: 1px solid blue;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding: 2%; 
-    }
-}
-
-#mapa{
-    opacity: 0;
-    position: fixed;
-    top: 25vh;
-    left: 25vw;
-    width: 50%;
-    height: 50%;
-    z-index: -2;
-}
-
-#taparTodo{
-    position: fixed;
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    z-index: 1;
-}
+#taparTodo {
+  position: fixed;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 1; }
 
 .stars-outer {
-    display: inline-block;
-    position: relative;
-    font-family: FontAwesome;
-  }
-   
-  .stars-outer::before {
-    content: "\f006 \f006 \f006 \f006 \f006";
-  }
-   
-  .stars-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-  }
-   
-  .stars-inner::before {
-    content: "\f005 \f005 \f005 \f005 \f005";
-    color: #f8ce0b;
-  }
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome; }
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006"; }
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0; }
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b; }
+
+/*# sourceMappingURL=style.css.map */

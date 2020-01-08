@@ -5,7 +5,18 @@ var fallas,ip;
 
 
 function init() {
-    fetch("https://api.ipify.org/?format=json").then(res=> {return res.json()}).then(resp=>{ip=resp.ip});
+    fetch("https://api.ipify.org/?format=json").then(res=> {return res.json()}).then(resp=>{
+        ip=resp.ip;
+        if(ip){
+            cargar();
+        }else{
+            setTimeout(init,2000);
+        }
+        
+    });
+}
+
+function cargar(){
     crearMapa();
     traductor();
     window.addEventListener("resize", function () { waterfall(document.querySelector("content")); }); 
@@ -30,6 +41,7 @@ function init() {
 }
 
 function primerMostrar() {
+    console.log(ip);
     minimo=2019;
     minimoI=2019;
     maximo=0;
@@ -42,11 +54,23 @@ function primerMostrar() {
     const content = document.querySelector("content");
     fallas.features.forEach(element => {
         // console.log(element.properties.id+" "+ip)
+        element.interval= setInterval(function(){
+            if(element.add){
+               // console.log(element.properties.id+" b");
+                if(element.puntuacion!=-1){
+                    const falla = document.getElementById(element.properties.id);
+                    falla.childNodes[5].childNodes[0].style.width=(element.puntuacion*100/5)+"%";
+                }
+                window.clearInterval(element.interval);
+            }
+        },1000)
         fetch("/puntuaciones/"+element.properties.id+"/"+ip).then(res=> {return res.json()}).then(
             resp=>{
                 // console.log(resp);
+                //console.log(element.properties.id+" a "+resp.puntuacion);
                 element.puntuacion=resp.puntuacion;
                 element.idPuntuacion=resp._id;
+                element.add=true;
         });
         if (!secciones.includes(element.properties.seccion)){
             secciones.push(element.properties.seccion);
@@ -132,6 +156,7 @@ function mostrar() {
     fallas.features.filter(filtro).forEach(element => {
         if (document.getElementById("principal").checked) {
             let div = document.createElement("div");
+            div.id=element.properties.id;
             div.classList.add("falla");
             let img = document.createElement("img");
             let src = element.properties.boceto;
@@ -167,6 +192,7 @@ function mostrar() {
         } else {
             let div = document.createElement("div");
             div.classList.add("falla");
+            div.id=element.properties.id;
             let img = document.createElement("img");
             let src = element.properties.boceto_i;
             //Cambia el año del boceto
@@ -266,3 +292,4 @@ function sectors(secciones) {
         select.appendChild(opcion);
     });
 }
+

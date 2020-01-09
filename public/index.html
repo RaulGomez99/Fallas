@@ -29,28 +29,43 @@
     <div id="formulario">
         <div id="icono"></div>
         <div id="nav">
-            Nombre
-            <input type="text" name="nombre" id="nombre">
-            Sección
-            <select name="seccion" id="seccion">
+            <div id="nombreGrid"> 
+                Nombre <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+            </div>
+            
+            <div id="seccionGrid"> 
+                Sección 
+                <select name="seccion" id="seccion" aria-placeholder="Sección">
+                    
                 
-            </select>
-            Sector
-            <select name="sector" id="sector">
-                
-            </select>
-            Año Boceto
-            <select name="anyoBoceto" id="anyoBoceto">
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-            </select>
-            Año de fundación
-            <input id="desde" class="texto" type="number" name="desde" placeholder="Desde">
-            <input id="hasta" class="texto" type="number" name="hasta" placeholder="Hasta">
-            <input id="principal" class="radio" type="radio" name="categoria" value="principal" checked="checked"> Principal 
-            <input id="infantil" class="radio" type="radio" name="categoria" value="infantil"> Infantil <br>
+                </select>
+            </div>
+            <div id="sectorGrid"> 
+                Sector
+                <select name="sector" id="sector">
+                    
+                </select>
+            </div>
+            <div id="anyoBocetoGrid">
+                Año Boceto
+                <select name="anyoBoceto" id="anyoBoceto">
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                </select>
+            </div>
+            <div id="anyoFundacionGrid"> 
+                Año de fundación
+                <input id="desde" class="texto" type="number" name="desde" placeholder="Desde">
+                <input id="hasta" class="texto" type="number" name="hasta" placeholder="Hasta">
+            </div>
+            <div id="categoriaGrid"> 
+                <input id="principal" class="radio" type="radio" 
+                        name="categoria" value="principal" checked="checked"> Principal 
+                <input id="infantil" class="radio" type="radio" 
+                        name="categoria" value="infantil"> Infantil
+            </div>
         </div>
     </div>
     <br>

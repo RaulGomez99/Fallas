@@ -1,6 +1,5 @@
 function estrellitasPorEncima(ev){
     const valorado = this.idPuntuacion!=undefined;
-    console.log(this.idPuntuacion);
     let puntuacion = Math.floor((ev.layerX*10)/this.clientWidth)+1;
     this.children[0].style.width=puntuacion*10+"%";
     let datos= {};
@@ -13,7 +12,6 @@ function estrellitasPorEncima(ev){
 }
 
 function valolar(datos, estrellas){
-    console.log(datos);
     const fetchBusc = fetch("/puntuaciones",{
         method: 'POST', 
         body: JSON.stringify(datos), 

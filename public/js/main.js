@@ -55,11 +55,13 @@ function primerMostrar() {
     fallas.features.forEach(element => {
         // console.log(element.properties.id+" "+ip)
         element.interval= setInterval(function(){
+            //Esta todo el rato en espera hasta que haya cargado la valoración
             if(element.add){
-               // console.log(element.properties.id+" b");
                 if(element.puntuacion!=-1){
                     const falla = document.getElementById(element.properties.id);
+                    //Le añade la puntuación a las estrellas
                     falla.childNodes[5].childNodes[0].style.width=(element.puntuacion*100/5)+"%";
+                    falla.childNodes[5].idPuntuacion=element.idPuntuacion;
                 }
                 window.clearInterval(element.interval);
             }

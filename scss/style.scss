@@ -1,3 +1,5 @@
+
+//Selección de empresa
 $empresa: "EvilCorp";
 $color:"";
 $colorSecundario:"";
@@ -25,76 +27,9 @@ $colorNav:"";
 body{
     background: $color;
 }
-// div, input {
-//     margin: 0 auto;
-// }
 
 
-
-button{
-    background: $colorSuavizaco;
-    color: black;
-    margin-top:15px;
-    border:1px solid $color;
-    border-radius: 10px;
-	display:inline-block;
-	cursor:pointer;
-	font-family:Arial;
-	font-size:18px;
-	font-weight:bold;
-	padding:9px 23px;
-    text-decoration:none;
-    box-shadow: 5px 5px darkslategrey;
-    // @if $empresa=="EvilCorp" {
-    //     text-shadow: -1px 0 $colorContrario, 0 1px $colorContrario, 
-    //             1px 0 $colorContrario, 0 -1px $colorContrario;
-    // }
-    
-}
-
-#icono{
-    content: url($icono);
-    width: 5%;
-    display: inline-block;
-}
-
-input, select, option{
-    background: $colorSuavizaco;
-
-}
-
-content{
-    width: 100%;
-    display: inline-block;
-    margin-top: Calc(5% + 2px);
-}
-
-#formulario{
-    top: 0px;
-    left: 0px;
-    position: fixed;
-    overflow: hidden;
-    background: $colorNav;
-    z-index: 7;
-    @media (max-width: 700px) {
-        background: $color;
-    }
-    display: block;
-    width: 100%;
-}
-
-
-img{
-    width: 90%;
-    border-radius: 5px;
-}
-
-@media (max-width: 700px) {
-    #nav{
-        display: none;
-    }
-} 
-
+//Falla
 .falla{
     width: 13.7%;
     margin: 1%;
@@ -120,6 +55,13 @@ img{
 
 }
 
+img{
+    width: 90%;
+    border-radius: 5px;
+}
+
+
+//Mapa
 #mapa{
     opacity: 0;
     position: fixed;
@@ -139,26 +81,182 @@ img{
     z-index: 1;
 }
 
+
+//Estrellas
 .stars-outer {
     display: inline-block;
     position: relative;
     font-family: FontAwesome;
-  }
+}
    
-  .stars-outer::before {
+.stars-outer::before {
     content: "\f006 \f006 \f006 \f006 \f006";
-  }
-   
-  .stars-inner {
+}
+
+.stars-inner {
     position: absolute;
     top: 0;
     left: 0;
     white-space: nowrap;
     overflow: hidden;
     width: 0;
-  }
-   
-  .stars-inner::before {
+}
+
+.stars-inner::before {
     content: "\f005 \f005 \f005 \f005 \f005";
     color: #f8ce0b;
-  }
+}
+
+
+//Formulario
+#formulario{
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    overflow: hidden;
+    background: $colorNav;
+    z-index: 7; 
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    @media (max-width: 700px) {
+        background: $color;
+    }
+}
+
+#icono{
+    content: url($icono);
+    width: 75%;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+input, select, option{
+    background: $colorSuavizaco;
+    border:0;
+    border-radius:5px;
+}
+
+//Chrome y otros para el select
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+//Firefos para el select
+input[type=number] {
+    -moz-appearance:textfield;
+    width: 5vw;
+    height: 50%;
+}
+
+input[type=text]{
+    width: 15vw;
+    height: 50%;
+}
+
+select{
+    width: 15vw;
+    height: 50%;
+    padding: 5px;
+    line-height: 1;
+    border:0;
+    border-radius:5px;
+    font-size: 16px;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) 
+                no-repeat right $colorSuavizaco;
+    -webkit-appearance: none;
+    background-position-x: 13.5vw;
+    @media (max-width: 1000px) {
+        background-position-x: 12.5vw;
+    }
+
+    @media (min-width: 700px) and (max-width: 1000px) {
+        background-position-x: 12vw;
+    }
+}
+
+content{
+    width: 100%;
+    display: inline-block;
+    margin-top: Calc(5.1% + 15px);
+}
+
+button{
+    background: $colorSuavizaco;
+    color: black;
+    margin-top:15px;
+    border:1px solid $color;
+    border-radius: 10px;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:9px 23px;
+    text-decoration:none;
+    box-shadow: 5px 5px darkslategrey;  
+}
+  
+//Grid del formulario
+#icono{
+    grid-area: icono;
+}
+
+#nombreGrid{
+    grid-area: nombre;
+}
+
+#seccionGrid{
+    grid-area: seccion;
+}
+
+#sectorGrid{
+    grid-area: sector;
+}
+
+#anyoBocetoGrid{
+    grid-area: anyoBoceto;
+}
+
+#anyoFundacionGrid{
+    grid-area: anyoFundacion;
+}
+
+#categoriaGrid{
+    grid-area: categoria;
+}
+
+#nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "nombre anyoBoceto seccion"
+                         "anyoFundacion sector categoria";
+    grid-area: nav;
+    justify-items: center;
+    align-items: center;
+    @media (max-width: 700px) {
+        display: none;
+    } 
+    @media (min-width: 700px) and (max-width: 1500px) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: "nombre seccion"
+                             "anyoFundacion anyoBoceto"
+                             "sector categoria";
+    }
+}
+
+#formulario{
+    // margin-top: 5px;
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    grid-template-areas : "icono nav";
+    
+}
+
+
+
+
+

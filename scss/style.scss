@@ -7,14 +7,16 @@ $colorSuavizaco:"";
 $colorContrario:"";
 $icono:"";
 $colorNav:"";
+$sombra:"";
 @if $empresa=="EvilCorp" {
     // $color:#a9213b;
-    $color:#c60000;
+    $color:#cf3030;
     $colorSecundario:#f6f6f6;
     $colorSuavizaco:#df6f84;
     $colorContrario:black;
     $icono:"../logos/evilcorp.png";
     $colorNav:#8e1329;
+    $sombra:darkslategrey;
 }@else{
     $color:#5b954a;
     $colorSecundario:black;
@@ -22,6 +24,7 @@ $colorNav:"";
     $colorContrario:#f6f6f6;
     $icono:"../logos/cthulhu.png";
     $colorNav:#2a683d;
+    $sombra:darkslategrey;
 }
 
 body{
@@ -34,14 +37,14 @@ body{
     width: 13.7%;
     margin: 1%;
     border: 1px solid $colorSecundario;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     font-family:Arial;
 	font-size:18px;
     padding: 2%; 
     color: black; 
     @media (max-width: 700px) {
-        width: 94%;
+        width: 93%;
     } 
     @media (min-width: 700px) and (max-width: 1000px) {
         width: 43%;
@@ -129,6 +132,10 @@ img{
     width: 75%;
     display: inline-block;
     margin: 0 auto;
+    z-index: 7;
+    @media (max-width: 700px) {
+        width: 125%;
+    }
 }
 
 input, select, option{
@@ -195,7 +202,11 @@ button{
 	font-weight:bold;
 	padding:9px 23px;
     text-decoration:none;
-    box-shadow: 5px 5px darkslategrey;  
+    box-shadow: 5px 5px $sombra;  
+}
+
+button:hover{
+    background: $color;
 }
   
 //Grid del formulario
@@ -227,6 +238,8 @@ button{
     grid-area: categoria;
 }
 
+
+
 #nav{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -236,9 +249,7 @@ button{
     grid-area: nav;
     justify-items: center;
     align-items: center;
-    @media (max-width: 700px) {
-        display: none;
-    } 
+    
     @media (min-width: 700px) and (max-width: 1500px) {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
@@ -246,17 +257,72 @@ button{
                              "anyoFundacion anyoBoceto"
                              "sector categoria";
     }
+    @media (max-width: 700px) {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+                             "nombre"
+                             "seccion"
+                             "anyoFundacion"
+                             "anyoBoceto"
+                             "sector"
+                             "categoria";
+        z-index: 5;
+        // background: red;
+        background: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        right: 0;
+        transform: translateX(200%);
+        transition:  1s;
+    } 
+}
+
+
+
+#nav div{
+    @media (max-width: 700px) {
+        width: 80%;
+        margin-right: 10%;
+        height: 17%;
+        margin: 0 auto;
+        color: white;
+        input[type=text]{
+            width: 70%;
+            height: 100%;
+            margin-left: 5%;
+        }
+        input[type=number]{
+            width: 25%;
+            height: 100%;
+            margin-left: 5%;
+        }
+        select{
+            width: 57vw;
+            height: 100%;
+            margin-left: 5%;
+            background-position-x: 50vw;
+        }
+        input[type=radio]{
+            margin-left:40%;
+        }
+    }
 }
 
 #formulario{
     // margin-top: 5px;
     display: grid;
     grid-template-columns: 1fr 9fr;
-    grid-template-areas : "icono nav";
-    
+    grid-template-areas : "icono nav";    
 }
 
+.hamburguesa{
+    transform: translateX(0%) !important;
+}
 
-
-
-
+.bodytapao{
+    overflow: hidden;
+}

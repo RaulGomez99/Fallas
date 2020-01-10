@@ -1,11 +1,11 @@
 body {
-  background: #c60000; }
+  background: #cf3030; }
 
 .falla {
   width: 13.7%;
   margin: 1%;
   border: 1px solid #f6f6f6;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   font-family: Arial;
   font-size: 18px;
@@ -13,7 +13,7 @@ body {
   color: black; }
   @media (max-width: 700px) {
     .falla {
-      width: 94%; } }
+      width: 93%; } }
   @media (min-width: 700px) and (max-width: 1000px) {
     .falla {
       width: 43%; } }
@@ -77,13 +77,17 @@ img {
   font-weight: bold; }
   @media (max-width: 700px) {
     #formulario {
-      background: #c60000; } }
+      background: #cf3030; } }
 
 #icono {
   content: url("../logos/evilcorp.png");
   width: 75%;
   display: inline-block;
-  margin: 0 auto; }
+  margin: 0 auto;
+  z-index: 7; }
+  @media (max-width: 700px) {
+    #icono {
+      width: 125%; } }
 
 input, select, option {
   background: #df6f84;
@@ -130,7 +134,7 @@ button {
   background: #df6f84;
   color: black;
   margin-top: 15px;
-  border: 1px solid #c60000;
+  border: 1px solid #cf3030;
   border-radius: 10px;
   display: inline-block;
   cursor: pointer;
@@ -140,6 +144,9 @@ button {
   padding: 9px 23px;
   text-decoration: none;
   box-shadow: 5px 5px darkslategrey; }
+
+button:hover {
+  background: #cf3030; }
 
 #icono {
   grid-area: icono; }
@@ -170,18 +177,59 @@ button {
   grid-area: nav;
   justify-items: center;
   align-items: center; }
-  @media (max-width: 700px) {
-    #nav {
-      display: none; } }
   @media (min-width: 700px) and (max-width: 1500px) {
     #nav {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr;
       grid-template-areas: "nombre seccion" "anyoFundacion anyoBoceto" "sector categoria"; } }
+  @media (max-width: 700px) {
+    #nav {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-areas: "nombre" "seccion" "anyoFundacion" "anyoBoceto" "sector" "categoria";
+      z-index: 5;
+      background: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      right: 0;
+      transform: translateX(200%);
+      transition: 1s; } }
+
+@media (max-width: 700px) {
+  #nav div {
+    width: 80%;
+    margin-right: 10%;
+    height: 17%;
+    margin: 0 auto;
+    color: white; }
+    #nav div input[type=text] {
+      width: 70%;
+      height: 100%;
+      margin-left: 5%; }
+    #nav div input[type=number] {
+      width: 25%;
+      height: 100%;
+      margin-left: 5%; }
+    #nav div select {
+      width: 57vw;
+      height: 100%;
+      margin-left: 5%;
+      background-position-x: 50vw; }
+    #nav div input[type=radio] {
+      margin-left: 40%; } }
 
 #formulario {
   display: grid;
   grid-template-columns: 1fr 9fr;
   grid-template-areas: "icono nav"; }
+
+.hamburguesa {
+  transform: translateX(0%) !important; }
+
+.bodytapao {
+  overflow: hidden; }
 
 /*# sourceMappingURL=style.css.map */

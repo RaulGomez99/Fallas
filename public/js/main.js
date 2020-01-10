@@ -19,7 +19,10 @@ function init() {
 function cargar(){
     crearMapa();
     traductor();
-    window.addEventListener("resize", function () { waterfall(document.querySelector("content")); }); 
+    window.addEventListener("resize", function () { 
+        if(window.innerWidth>700) document.querySelector("body").classList.remove("bodytapao");
+        waterfall(document.querySelector("content")); 
+    }); 
     document.querySelectorAll(".radio").forEach(radio => radio.addEventListener("change", cambiaCategoria));
     document.getElementById("desde").addEventListener("change", mostrar);
     document.getElementById("hasta").addEventListener("change", mostrar);
@@ -28,6 +31,7 @@ function cargar(){
     document.getElementById("nombre").addEventListener("change", mostrar);
     document.getElementById("anyoBoceto").addEventListener("change",mostrar);
     document.getElementById("taparTodo").addEventListener("click",salirMapa);
+    document.getElementById("icono").addEventListener("click", hamburguesa);
     const fetchBusc = fetch(url);
     fetchBusc
         .then(res => {
@@ -295,3 +299,9 @@ function sectors(secciones) {
     });
 }
 
+function hamburguesa(){
+    console.log(window.innerWidth);
+    if(window.innerWidth>700) return;
+    document.getElementById("nav").classList.toggle("hamburguesa");
+    document.querySelector("body").classList.toggle("bodytapao");
+}

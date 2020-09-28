@@ -46,8 +46,8 @@ function cargar(){
 
 function primerMostrar() {
     console.log(ip);
-    minimo=2019;
-    minimoI=2019;
+    minimo=2020;
+    minimoI=2020;
     maximo=0;
     maximoI=0;
     secciones = [];
@@ -167,7 +167,7 @@ function mostrar() {
             let img = document.createElement("img");
             let src = element.properties.boceto;
             //Cambia el año del boceto
-            img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
+            img.src = src.substring(0,src.indexOf("2020"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2020")+4);
             div.appendChild(img);
             let nombre = document.createElement("p");
             nombre.innerText = element.properties.nombre;
@@ -202,7 +202,7 @@ function mostrar() {
             let img = document.createElement("img");
             let src = element.properties.boceto_i;
             //Cambia el año del boceto
-            img.src = src.substring(0,src.indexOf("2019"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2019")+4);
+            img.src = src.substring(0,src.indexOf("2020"))+document.getElementById("anyoBoceto").value+src.substring(src.indexOf("2020")+4);
             if(img.height>=550) div.classList.add("imgAlta");
             if(img.height>=450 && img.height<550) div.classList.add("imgMedia");
             div.appendChild(img);
